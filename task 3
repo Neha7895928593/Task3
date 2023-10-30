@@ -1,0 +1,90 @@
+
+
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+
+    while left <= right:
+        mid = (left + right) / 2
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1
+
+print("Choose your array elements to search for a target value")
+start_range = int(input("Enter the starting range of the array: "))
+end_range = int(input("Enter the ending range of the array: "))
+
+if start_range > end_range:
+    print("Invalid range. The starting range should be less than or equal to the ending range.")
+else:
+    input_str = input("Enter an array of positive integers, separated by spaces: ")
+    
+
+    try:
+        arr = list(map(int, input_str.split()))
+        
+        if any(num <= 0 for num in arr):
+            print("Error: All array elements should be positive integers.")
+        
+        else:
+            if len(arr) < 1 or end_range < 0:
+                print("Error: The ending range is invalid.")
+            else:
+                if not all(arr[i] <= arr[i + 1] for i in range(len(arr) - 1)):
+                    print("Array is not sorted. Sorting it now.")
+                    arr.sort()
+                    print("Now your given array elements are sorted.")
+                    print(arr)
+                else:
+                    print('The given array is already sorted.')
+
+                target = int(input("Enter the target value to search for: "))
+
+                result = binary_search(arr, target)
+                if result != -1:
+                    print(f"Element {target} found at index {result}")
+                else:
+                    print(f"Element {target} not found in the array.")
+    except ValueError:
+        print("Invalid input. Please enter a valid list of positive integers separated by spaces.")
+
+# def binary_search(arr, target):
+#     left, right = 0, len(arr) - 1
+
+#     while left <= right:
+#         mid = (left + right) // 2
+
+#         if arr[mid] == target:
+#             return mid
+#         elif arr[mid] < target:
+#             left = mid + 1
+#         else:
+#             right = mid - 1
+
+#     return -1
+
+# print("Choose your arry element after search your arry element as a target value")
+# input_str = input("Enter an array of numbers, separated by spaces: ")
+# arr = list(map(int, input_str.split()))
+
+# if not all(arr[i] <= arr[i + 1] for i in range(len(arr) - 1)):
+#     print("Arry is not sorted, relex, don't worry I sorted")
+#     arr.sort()
+#     print(" Now your given arry element is sorted ....................")
+#     print(arr)
+# else:
+#     print('Whichever element you give in your arry all element is sorted,You are very intelligent')
+
+# print("Now time to search")   
+# target = int(input("Enter the target value to search for: "))
+
+# result = binary_search(arr, target)
+# if result != -1:
+#     print(f"Element {target} found at index {result}")
+# else:
+#     print(f"Element {target} not found in the array.")
